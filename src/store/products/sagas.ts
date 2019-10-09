@@ -6,9 +6,17 @@ import { callApi } from '../../utils/api'
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || 'http://walidsultan.net/TBStockApi/api/Products/Category/'
 
 function* handleFetch(data: any) {
+
+  if (data.type === ProductsActionTypes.LOCATION_CHANGED && data.payload.location.pathname.indexOf('categories') < 0) {
+    return;
+  }
+
   try {
     // To call async functions, use redux-saga's `call()`.
-    const res = yield call(callApi, 'get', API_ENDPOINT, data.payload)
+
+    let categoryId: string = data.type === ProductsActionTypes.LOCATION_CHANGED ? data.payload.location.pathname.split('/categories/')[1] : data.payload;
+
+    const res = yield call(callApi, 'get', API_ENDPOINT, categoryId)
 
     if (res.error) {
       yield put(fetchError(res.error))
@@ -27,8 +35,8 @@ function* handleFetch(data: any) {
 // This is our watcher function. We use `take*()` functions to watch Redux for a specific action
 // type, and run our saga, for example the `handleFetch()` saga above.
 function* watchFetchRequest() {
-  debugger;
   yield takeEvery(ProductsActionTypes.FETCH_REQUEST, handleFetch)
+  yield takeEvery(ProductsActionTypes.LOCATION_CHANGED, handleFetch)
 }
 
 // We can also use `fork()` here to split our saga into multiple watchers.

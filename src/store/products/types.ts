@@ -28,8 +28,9 @@ export enum ProductsActionTypes {
   FETCH_REQUEST = '@@products/FETCH_REQUEST',
   FETCH_SUCCESS = '@@products/FETCH_SUCCESS',
   FETCH_ERROR = '@@products/FETCH_ERROR',
-  SELECT_HERO = '@@products/SELECT_HERO',
-  SELECTED = '@@products/SELECTED'
+  SELECT_PRODUCT = '@@products/SELECT_PRODUCT',
+  SELECTED = '@@products/SELECTED',
+  LOCATION_CHANGED = '@@router/LOCATION_CHANGE'
 }
 
 // Declare state types with `readonly` modifier to get compile time immutability.

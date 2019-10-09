@@ -36,9 +36,8 @@ const IMAGES_PATH = 'http://walidsultan.net/TBStock_Images/'
 
 class CategoriesIndexPage extends React.Component<AllProps> {
   public componentDidMount() {
-    debugger;
     const { fetchRequest: fr } = this.props
-    fr(this.props.match.params.categoryId);
+    //fr(this.props.match.params.categoryId);
 
   }
 

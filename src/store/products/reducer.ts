@@ -12,6 +12,7 @@ export const initialState: ProductsState = {
 // everything will remain type-safe.
 const reducer: Reducer<ProductsState> = (state = initialState, action) => {
   switch (action.type) {
+    case ProductsActionTypes.LOCATION_CHANGED:
     case ProductsActionTypes.FETCH_REQUEST: {
       return { ...state, loading: true }
     }

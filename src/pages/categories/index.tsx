@@ -72,6 +72,7 @@ class CategoriesIndexPage extends React.Component<AllProps> {
   }
 
   public render() {
+    const { loading } = this.props;
 
     return (
       <Page>
